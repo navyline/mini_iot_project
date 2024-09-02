@@ -40,24 +40,22 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    // const body = await request.json();
-    // console.log(body);
-    // Parse JSON from the request
     const { ldr, vr, temp, distance } = await request.json();
     
-    // Ensure data types are correct
     const ldrParsed = parseInt(ldr, 10);
     const vrParsed = parseInt(vr, 10);
     const tempParsed = parseFloat(temp);
     const distanceParsed = parseFloat(distance);
 
-    // Execute SQL query to insert data
+    console.log('Parsed values:', ldrParsed, vrParsed, tempParsed, distanceParsed);
+
     const res = await client.query(
       'INSERT INTO "mini_045" (LDR, VR, TEMP, DISTANCE) VALUES ($1, $2, $3, $4) RETURNING *',
       [ldrParsed, vrParsed, tempParsed, distanceParsed]
     );
 
-    // Return successful response
+    console.log('Insert result:', res.rows[0]);
+
     return new Response(JSON.stringify(res.rows[0]), {
       status: 201,
       headers: {
