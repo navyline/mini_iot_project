@@ -53,7 +53,7 @@ export async function POST(request) {
 
     // Execute SQL query to insert data
     const res = await client.query(
-      'INSERT INTO "Pp058" (LDR, VR, TEMP, DISTANCE) VALUES ($1, $2, $3, $4) RETURNING *',
+      'INSERT INTO "mini_045" (LDR, VR, TEMP, DISTANCE) VALUES ($1, $2, $3, $4) RETURNING *',
       [ldrParsed, vrParsed, tempParsed, distanceParsed]
     );
 
