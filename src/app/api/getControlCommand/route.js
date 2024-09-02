@@ -14,29 +14,29 @@ client.connect();
 
 export async function POST(request) {
   try {
-      const { command } = await request.json();
-      if (command !== 'RGB_ON' && command !== 'BUZZER_ON' && command !== 'OFF') {
-          throw new Error('Invalid status');
-      }
+    const { command } = await request.json();
+    if (command !== 'RGB_ON' && command !== 'BUZZER_ON' && command !== 'HBD_ON' && command !== 'OFF') {
+      throw new Error('Invalid command');
+    }
 
-      const res = await client.query(
-          'UPDATE "mini_045" SET command = $1 WHERE id = $2 RETURNING *',
-          [command, 87] // ใช้ `1` เป็น ID ของแถวที่ต้องการอัปเดต หากมีหลายแถวให้ปรับเป็น ID ที่ต้องการ
-      );
+    const res = await client.query(
+      'UPDATE "mini_045" SET command = $1 WHERE id = $2 RETURNING *',
+      [command, 87] // ใช้ `87` เป็น ID ของแถวที่ต้องการอัปเดต
+    );
 
-      if (res.rowCount === 0) {
-          throw new Error('No rows updated');
-      }
+    if (res.rowCount === 0) {
+      throw new Error('No rows updated');
+    }
 
-      return new Response(JSON.stringify({ success: true }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-      });
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (error) {
-      return new Response(JSON.stringify({ success: false, error: error.message }), {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' },
-      });
+    return new Response(JSON.stringify({ success: false, error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
 

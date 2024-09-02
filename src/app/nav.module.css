@@ -1,82 +1,67 @@
-/* Button Styles */
-.btnCustom, .btnDanger {
-  color: #ffffff; /* Text color white */
-  padding: 10px 25px;
-  border-radius: 25px; /* Rounded corners */
-  font-size: 1.2rem; /* Adjust font size here */
-  cursor: pointer;
-  border: 2px solid transparent; /* Border for hover effect */
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Smooth transition */
+.navbarCustom {
+  background-color: #0a74da;
+  padding: 15px 0;
+  justify-content: center; /* Center content horizontally */
 }
 
-/* Custom Button */
+.navbarBrandText {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navLink {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+
 .btnCustom {
-  background-color: #0a74da; /* Primary Blue */
+  background-color: #0a74da;
+  color: #ffffff;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  margin: 0 5px;
 }
 
 .btnCustom:hover {
   background-color: #0096ff;
-  border-color: #0096ff; /* Border color on hover */
+  border-color: #0096ff;
   box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
 }
 
-.btnCustom:active {
-  background-color: #007acc;
-  border-color: #007acc; /* Border color when active */
-  box-shadow: 0 0 8px rgba(0, 170, 255, 1), 0 0 15px rgba(0, 170, 255, 0.7);
-}
-
-/* Danger Button */
 .btnDanger {
-  background-color: #ff4d4d; /* Danger Red */
+  background-color: #ff4d4d;
+  color: #ffffff;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  margin: 0 5px;
 }
 
 .btnDanger:hover {
   background-color: #ff6666;
-  border-color: #ff6666; /* Border color on hover */
+  border-color: #ff6666;
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
 }
 
-.btnDanger:active {
-  background-color: #e03e3e;
-  border-color: #e03e3e; /* Border color when active */
-  box-shadow: 0 0 8px rgba(255, 0, 0, 1), 0 0 15px rgba(255, 0, 0, 0.7);
-}
-/* LED Status Display */
-.ledStatusContainer {
-  font-size: 1rem; /* Adjust size as needed */
-  color: #ffffff; /* Adjust color as needed */
-  margin-top: 10px; /* Adjust spacing as needed */
-}
-/* Circular Button Style */
-.btn-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  text-align: center;
-  padding: 5px 0;
-  font-size: 16px;
-  line-height: 1.42857;
-  border: none;
+.statusOn, .statusOff {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-left: 20px;
 }
 
-/* Rectangular Button Style */
-.btn-rectangle {
-  width: 100px;
-  height: 50px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 16px;
-  line-height: 50px;
-  border: none;
+.statusOn {
+  color: #00ff00;
 }
 
-.btn-custom {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  color: #fff;
+.statusOff {
+  color: #ff0000;
 }

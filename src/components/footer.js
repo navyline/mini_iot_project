@@ -10,7 +10,7 @@ export default function Footer() {
           <li className="nav-item"><a href="/Service" className={`nav-link px-3 ${styles.navLink}`}>Service</a></li>
           <li className="nav-item"><a href="/Contact" className={`nav-link px-3 ${styles.navLink}`}>Contact</a></li>
         </ul>
-        <p className={`text-center ${styles.footerText}`}>© 2024 STARBUG, Inc</p>
+        <p className={`text-center ${styles.footerText}`}>© 2024 NATTAKORN WONGTHI 66309010045</p>
       </footer>
     </div>
   );

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import styles from '../app/nav.module.css';
 
 const notifyUser = (command) => {
@@ -57,30 +56,25 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar navbar-expand-lg ${styles.navbarCustom}`}>
-      <div className="container-fluid">
-        <Link className="navbar-brand d-flex align-items-center" href="./">
-          <span className={styles.navbarBrandText}>My Gu</span>
-        </Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+      <div className="container-fluid d-flex justify-content-center">
+        <div className="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul className="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center">
             <li className="nav-item">
               <Link className={`nav-link ${styles.navLink}`} href="./">Dashboard</Link>
             </li>
             <li className="nav-item">
               <Link className={`nav-link ${styles.navLink}`} href="/History">History</Link>
             </li>
+            <form className="d-flex align-items-center">
+              <button type="button" className={`btn ${styles.btnCustom}`} onClick={() => updateLEDStatus('RGB_ON', setLEDStatus)}>Open System</button>
+              <button type="button" className={`btn ${styles.btnCustom}`} onClick={() => updateLEDStatus('BUZZER_ON', setLEDStatus)}>Buzzer</button>
+              <button type="button" className={`btn ${styles.btnCustom}`} onClick={() => updateLEDStatus('HBD_ON', setLEDStatus)}>Music</button>
+              <button type="button" className={`btn ${styles.btnDanger}`} onClick={() => updateLEDStatus('OFF', setLEDStatus)}>Off</button>
+              <span className={`${ledStatus ? styles.statusOn : styles.statusOff}`}>
+                {ledStatus ? 'LED is ON' : 'LED is OFF'}
+              </span>
+            </form>
           </ul>
-          <form className="d-flex align-items-center">
-            <button type="button" className={`btn ${styles.btnCustom} me-2`} onClick={() => updateLEDStatus('RGB_ON', setLEDStatus)}>Open System</button>
-            <button type="button" className={`btn ${styles.btnCustom} me-2`} onClick={() => updateLEDStatus('BUZZER_ON', setLEDStatus)}>Buzzer</button>
-            <button type="button" className={`btn ${styles.btnDanger}`} onClick={() => updateLEDStatus('OFF', setLEDStatus)}>Off</button>
-            <span className={`ms-3 ${ledStatus ? styles.statusOn : styles.statusOff}`}>
-              {ledStatus ? 'LED is ON' : 'LED is OFF'}
-            </span>
-          </form>
         </div>
       </div>
     </nav>

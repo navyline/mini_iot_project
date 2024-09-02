@@ -66,82 +66,7 @@ export default function Dashboard() {
     }
   }
 
-  const chartData1 = lastData.length > 0 ? {
-    labels: ["LDR", "VR"],
-    datasets: lastData.map((dataPoint, index) => ({
-      label: `Data Point ${index + 1}`,
-      data: [dataPoint.ldr, dataPoint.vr],
-      backgroundColor: [
-        "rgba(75, 192, 192, 0.6)",
-        "rgba(153, 102, 255, 0.6)",
-      ],
-    })),
-  } : null;
-
-  const chartData2 = lastData.length > 0 ? {
-    labels: ["Temperature", "Distance"],
-    datasets: lastData.map((dataPoint, index) => ({
-      label: `Data Point ${index + 1}`,
-      data: [dataPoint.temp, dataPoint.distance],
-      backgroundColor: [
-        "rgba(255, 159, 64, 0.6)",
-        "rgba(255, 99, 132, 0.6)",
-      ],
-    })),
-  } : null;
-
-  const lineChartData1 = allData.length > 0 ? {
-    labels: allData.map((dataPoint) =>
-      new Date(dataPoint.date).toLocaleString("th-TH", {
-        timeZone: "Asia/Bangkok",
-        dateStyle: "short",
-        timeStyle: "short",
-      })
-    ),
-    datasets: [
-      {
-        label: "LDR",
-        data: allData.map((dataPoint) => dataPoint.ldr),
-        fill: false,
-        borderColor: "rgba(75, 192, 192, 0.6)",
-        tension: 0.1,
-      },
-      {
-        label: "VR",
-        data: allData.map((dataPoint) => dataPoint.vr),
-        fill: false,
-        borderColor: "rgba(153, 102, 255, 0.6)",
-        tension: 0.1,
-      },
-    ],
-  } : null;
-
-  const lineChartData2 = allData.length > 0 ? {
-    labels: allData.map((dataPoint) =>
-      new Date(dataPoint.date).toLocaleString("th-TH", {
-        timeZone: "Asia/Bangkok",
-        dateStyle: "short",
-        timeStyle: "short",
-      })
-    ),
-    datasets: [
-      {
-        label: "Temperature",
-        data: allData.map((dataPoint) => dataPoint.temp),
-        fill: false,
-        borderColor: "rgba(255, 159, 64, 0.6)",
-        tension: 0.1,
-      },
-      {
-        label: "Distance",
-        data: allData.map((dataPoint) => dataPoint.distance),
-        fill: false,
-        borderColor: "rgba(255, 99, 132, 0.6)",
-        tension: 0.1,
-      },
-    ],
-  } : null;
-
+  // Options for Bar charts
   const chartOptions = {
     responsive: true,
     plugins: {
@@ -151,22 +76,132 @@ export default function Dashboard() {
       title: {
         display: true,
         text: "Latest Sensor Data Visualization",
+        font: {
+          size: 18,
+          weight: 'bold',
+        },
       },
     },
   };
 
+  // Options for Line charts
   const lineChartOptions = {
     responsive: true,
     plugins: {
       legend: {
         position: "top",
+        labels: {
+          font: {
+            size: 14,
+          },
+        },
       },
       title: {
         display: true,
         text: "Sensor Data Trends Over Time",
+        font: {
+          size: 20,
+          weight: "bold",
+        },
+        color: "#333",
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: "rgba(200, 200, 200, 0.3)",
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
       },
     },
   };
+
+  const chartData1 = lastData.length > 0 ? {
+    labels: ["LDR", "VR"],
+    datasets: lastData.map((dataPoint, index) => ({
+      label: `Data Point ${index + 1}`,
+      data: [dataPoint.ldr, dataPoint.vr],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.6)", // เปลี่ยนสีพื้นหลัง
+        "rgba(54, 162, 235, 0.6)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)", // เพิ่มเส้นขอบ
+        "rgba(54, 162, 235, 1)",
+      ],
+      borderWidth: 2, // ความหนาของเส้นขอบ
+    })),
+  } : null;
+
+  const chartData2 = lastData.length > 0 ? {
+    labels: ["Temperature", "Distance"],
+    datasets: lastData.map((dataPoint, index) => ({
+      label: `Data Point ${index + 1}`,
+      data: [dataPoint.temp, dataPoint.distance],
+      backgroundColor: [
+        "rgba(75, 192, 192, 0.6)",
+        "rgba(153, 102, 255, 0.6)",
+      ],
+      borderColor: [
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+      ],
+      borderWidth: 2,
+    })),
+  } : null;
+
+  const lineChartData1 = allData.length > 0 ? {
+    labels: allData.map((dataPoint) => new Date(dataPoint.date).toLocaleString("th-TH", {
+      timeZone: "Asia/Bangkok",
+      dateStyle: "short",
+      timeStyle: "short",
+    })),
+    datasets: [
+      {
+        label: "LDR",
+        data: allData.map((dataPoint) => dataPoint.ldr),
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        fill: true,
+      },
+      {
+        label: "VR",
+        data: allData.map((dataPoint) => dataPoint.vr),
+        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        fill: true,
+      },
+    ],
+  } : null;
+
+  const lineChartData2 = allData.length > 0 ? {
+    labels: allData.map((dataPoint) => new Date(dataPoint.date).toLocaleString("th-TH", {
+      timeZone: "Asia/Bangkok",
+      dateStyle: "short",
+      timeStyle: "short",
+    })),
+    datasets: [
+      {
+        label: "Temperature",
+        data: allData.map((dataPoint) => dataPoint.temp),
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        fill: true,
+      },
+      {
+        label: "Distance",
+        data: allData.map((dataPoint) => dataPoint.distance),
+        borderColor: "rgba(153, 102, 255, 1)",
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
+        fill: true,
+      },
+    ],
+  } : null;
 
   function downloadCSV(data, filename) {
     const csvData = data.map((row) =>
@@ -303,7 +338,7 @@ export default function Dashboard() {
               <Line data={lineChartData1} options={lineChartOptions} />
             </div>
           ) : (
-            <p>No data available for the LDR and VR line chart</p>
+            <p>No data available for LDR and VR trends</p>
           )}
         </div>
         <div
@@ -318,65 +353,28 @@ export default function Dashboard() {
               <Line data={lineChartData2} options={lineChartOptions} />
             </div>
           ) : (
-            <p>No data available for the Temperature and Distance line chart</p>
+            <p>No data available for Temperature and Distance trends</p>
           )}
         </div>
       </div>
-
-      <div className={`${styles.attackCountContainer} my-4`}>
-        <h2 className="text-center">Number of Attacks</h2>
-        {attackCount !== null ? (
-          <p className={`${styles.attackCount} text-center`}>{attackCount}</p>
-        ) : (
-          <p>Loading attack data...</p>
-        )}
-      </div>
-
-      <div className="text-center">
+      <div className="d-flex justify-content-center my-4">
         <button
-          className="btn btn-primary"
-          onClick={() => downloadCSV(lastData, "latest_data.csv")}
+          className="btn btn-primary mx-2"
+          onClick={() => downloadCSV(lastData, "last_data.csv")}
         >
-          Download Latest Data as CSV
+          Download Latest Data
+        </button>
+        <button
+          className="btn btn-secondary mx-2"
+          onClick={() => downloadCSV(allData, "all_data.csv")}
+        >
+          Download All Data
         </button>
       </div>
-
-      <h2 className={`${styles.heading} text-center my-4`}>
-        Latest Data
-      </h2>
-      <div className="table-responsive">
-        <table
-          className={`table table-striped table-bordered ${styles.table}`}
-        >
-          <thead className="thead-dark">
-            <tr>
-              <th>ID</th>
-              <th>LDR</th>
-              <th>VR</th>
-              <th>Temperature</th>
-              <th>Distance</th>
-              <th>Create At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lastData.map((ldata) => (
-              <tr key={ldata.id}>
-                <td>{ldata.id}</td>
-                <td>{ldata.ldr}</td>
-                <td>{ldata.vr}</td>
-                <td>{ldata.temp}</td>
-                <td>{ldata.distance}</td>
-                <td>
-                  {new Date(ldata.date).toLocaleString("th-TH", {
-                    timeZone: "Asia/Bangkok",
-                    dateStyle: "short",
-                    timeStyle: "short",
-                  })}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className={styles.attackCount}>
+        {attackCount !== null && (
+          <h3>Total Attacks Detected: {attackCount}</h3>
+        )}
       </div>
     </div>
   );
